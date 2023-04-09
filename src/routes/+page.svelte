@@ -1,6 +1,6 @@
 <script>
 	import CategoryCard from '$lib/category-card.svelte';
-	import Icon from '$lib/icon.svelte';
+	import Carousel from '$lib/carousel.svelte';
 	import NewsCard from '$lib/news-card.svelte';
 	import ProductCard from '$lib/product-card.svelte';
 
@@ -32,26 +32,18 @@
 				'Eco-leather furniture care instructions. Indignation and dislike men who are so beguiled'
 		}
 	];
+
+	let images = [
+		'/carousel/alpha.png',
+		'/carousel/beta.png',
+		'/carousel/charlie.png',
+		'/carousel/delta.png',
+		'/carousel/echo.png'
+	];
 </script>
 
 <section class="flex justify-center">
-	<div class="max-w-screen-lg w-full mt-24 relative">
-		<div class="absolute h-full w-12 top-0 flex items-center -left-20">
-			<button
-				type="button"
-				class="rounded-full bg-white border border-neutral-50 w-12 h-12 shadow-md grid place-items-center"
-			>
-				<Icon type="arrowLeft" />
-			</button>
-		</div>
-		<div class="absolute h-full w-12 top-0 flex items-center -right-20">
-			<button
-				type="button"
-				class="rounded-full bg-white border border-neutral-50 w-12 h-12 shadow-md grid place-items-center"
-				><Icon type="arrowRight" /></button
-			>
-		</div>
-
+	<div class="max-w-screen-lg w-full mt-24">
 		<div class="flex justify-between items-center">
 			<h2 class="section-title">Hot Products</h2>
 
@@ -99,7 +91,7 @@
 	<div class="max-w-screen-lg w-full mt-24">
 		<h2 class="section-title">Our News</h2>
 
-		<ul class="grid grid-cols-2 grid-rows-3 gap-x-10 gap-y-6 mt-8">
+		<ul class="grid grid-cols-2 grid-rows-[auto_auto_auto] gap-x-10 gap-y-6 mt-8">
 			{#each news as data}
 				<NewsCard {data} />
 			{/each}
@@ -109,16 +101,8 @@
 
 <section class="flex justify-center">
 	<div class="max-w-screen-lg w-full my-32">
-		<ul class="flex gap-5 overflow-x-auto">
-			<li class="aspect-square min-w-max overflow-hidden w-56 h-56 bg-neutral-100">
-				<img src="" alt="" class="object-cover" />
-			</li>
-			<li class="aspect-square min-w-max overflow-hidden w-56 h-56 bg-neutral-100">
-				<img src="" alt="" class="object-cover" />
-			</li>
-			<li
-				class="aspect-square min-w-max overflow-hidden w-56 h-56 flex flex-col justify-center p-3"
-			>
+		<Carousel autoplay={2000}>
+			<li class="aspect-square overflow-hidden w-56 h-56 flex flex-col justify-center p-3">
 				<p class="text-3xl font-semibold font-heading">@monostyle</p>
 
 				<p class="text-sm text-neutral-600 mt-2">
@@ -129,10 +113,13 @@
 					>Go to instagram</a
 				>
 			</li>
-			<li class="aspect-square min-w-max overflow-hidden w-56 h-56 bg-neutral-100">
-				<img src="" alt="" class="object-cover" />
-			</li>
-		</ul>
+
+			{#each images as image, index (index)}
+				<li class="aspect-square min-w-max overflow-hidden w-56 h-56 bg-neutral-100">
+					<img src={image} alt="" class="object-cover" />
+				</li>
+			{/each}
+		</Carousel>
 	</div>
 </section>
 
