@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+	.logo {
+		font-family: 'Darker Grotesque', sans-serif;
+		@apply tracking-wider uppercase font-bold;
+	}
+	.font-heading {
+		font-family: 'Darker Grotesque', sans-serif;
+	}
+	.section-title {
+		font-family: 'Darker Grotesque', sans-serif;
+		@apply font-bold text-4xl;
+	}
+}
